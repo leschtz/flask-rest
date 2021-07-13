@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>This is the title of the webpage!</title>
+    <script>
+        function create() {
+            const response = await fetch("/users/create", { method: "POST" })
+        }
+
+        function list() {
+            const response = await fetch("/users/", { method: "GET" })
+        }
+    </script>
+</head>
+
+<body>
+    <p>fail
+    </p>
+    <button type="button" onclick="create()">Create User</button>
+    <button type="button" onclick="list()">Server Message</button>
+
+</body>
+
+</html>
