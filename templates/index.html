@@ -14,13 +14,45 @@
     <button type="button" onclick="create()">Create User</button>
     <button type="button" onclick="list()">Server Message</button>
 
+
+    <div>
+        <table id="users">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+    </div>
     <script>
         function create() {
             const response = fetch("./users/create", { method: "POST", });
         }
 
         function list() {
-            const response = fetch("./users/", { method: "GET", }).then(response => console.log(response));
+            const response = fetch("./users/", { method: "GET", })
+                .then(response => response.json())
+                .then(data => {
+                    let x = JSON.parse(data)
+                    console.log("test")
+                    console.log(x)
+                    var tbody = document.getElementById("users").getElementsByTagName("tbody")[0]
+                    for (let element of x) {
+                        for (let n = 0; n < 3; n++) {
+                            row = tbody.insertRow();
+                            cell = row.insertCell().innerHTML = element.id
+                            cell = row.insertCell().innerHTML = element.name
+                            cell = row.insertCell().innerHTML = element.age
+                        }
+                        console.log(element.id, element.name, element.age)
+                    }
+                });
         }
     </script>
 </body>
